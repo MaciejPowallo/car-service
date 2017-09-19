@@ -1,0 +1,49 @@
+<div class="container">
+  <div calss="row">
+    <div calss="col-sm-12">
+      <table *ngIf="cars && cars.length > 0; else noCarsInfo" class="cs-table table table-striped">
+        <thead>
+          <tr>
+            <th>no.</th>
+            <th>car</th>
+            <th>plate</th>
+            <th>delivery date</th>
+            <th>deadline</th>
+            <th>client</th>
+            <th>plate</th>
+            <th>cost</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let car of cars; let i = index "  [ngClass]="{'row-error': car.isFullyDamaged}">
+          	<td> {{ i+1 }} </td>
+          	<td> {{ car.model }} </td>
+          	<td> {{ car.plate }} </td>
+          	<td> {{ car.deliveryDate }} </td>
+          	<td> {{ car.deadline }} </td>
+          	<td> {{ car.clientFirstName }} {{ car.clientSurname }} </td>
+          	<td> {{ car.plate }} </td>
+          	<td> {{ car.cost}} </td>
+          	<td class="text-center">  <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i> </td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noCarsInfo>
+        <div class="alert alert-info no-cars-info">
+      	  <strong>Info!</strong> Currently no cars in service.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  <app-total-cost [totalCost]="totalCost" (shownGross)="onShownGross($event)">
+  	<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+  </app-total-cost>
+  <div calss="row" *ngIf="grossCost">
+  	<div class="col-sm-12">
+	  <div class="col-sm-12 total-cost">
+	    <p class="text-right red">Total gross cost: {{ grossCost }} PLN</p>
+	  </div>
+  	</div>
+  </div>
+</div>

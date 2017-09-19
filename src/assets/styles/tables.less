@@ -1,0 +1,36 @@
+@import 'variables';
+
+.cs-table {
+	background: darken(@primary, 5%);
+
+	th {
+		font-weight: 700;
+		text-transform: uppercase; 
+	}
+
+	td {
+		color: @gray-dark;
+	}
+
+	.row-error {
+		border-left: 8px solid @red;
+		td {
+			color: @red;
+		}
+	}
+
+	.fa-trash-o{
+		&:hover {
+			color: @red;
+			font-weight: bold;
+			transform: rotate(-15deg);
+		}
+		&:active {
+			color: green;
+			font-weight: bold;
+			transform: rotate(0deg);
+		}
+
+	}
+
+}
